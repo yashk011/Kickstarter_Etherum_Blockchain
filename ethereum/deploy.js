@@ -17,7 +17,7 @@ const deploy  = async () => {
 
   const result = await new web3.eth.Contract(JSON.parse(compiledFactory.interface)) // create a new module of eth in web3 && create an instance of Contract and iniarlize with a
   .deploy({data : '0x' + compiledFactory.bytecode }) 
-  .send({ from: accounts[0] }); // no neeedtto specify the gas 
+  .send({ from: accounts[0] , gas: '200000' }); // no neeedt to specify the gas 
 
   console.log('Contract deployed to ' , result.options.address);
 
@@ -30,7 +30,8 @@ deploy();
 //_________________________ //
 
 
-// 0xb502c7996437a57919E4CC45CA9f1b5Ece2539d6 deployed address....
+// 0xb502c7996437a57919E4CC45CA9f1b5Ece2539d6 deployed address....git remote add origin https://github.com/yashk011/Kickstarter_usingEtheruem_Blockchain.git
+
 
 
 /*
