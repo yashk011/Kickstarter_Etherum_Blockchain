@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Label , Input , Button, FormField , Form} from 'semantic-ui-react';
+import {Label , Input , Button, FormField , Form, Message} from 'semantic-ui-react';
 import Campaign from '../ethereum/campaign';
 import web3 from '../ethereum/web3.js';
 import {Router} from '../routes';
@@ -11,7 +11,9 @@ class Contribute extends Component
 
     state = {
 
-        value: ''
+        value: '',
+        errorMessage :'' ,
+        loading : false 
 
     };
 
@@ -20,12 +22,14 @@ class Contribute extends Component
         event.preventDefault();
         const campaign = Campaign(this.props.address);
 
+        this.setState({loading : true ,errorMessage: '' });
+
 
         try{
 
             const accounts = await web3.eth.getAccounts();
 
-            campaign.methods.contribute().send({
+            await campaign.methods.contribute().send({
 
                 from: accounts[0],
                 value : web3.utils.toWei(this.state.value , 'ether')
@@ -38,8 +42,10 @@ class Contribute extends Component
 
         catch(err)
         {
-
+            this.setState({errorMessage:err.message});
         }
+
+        this.setState({value: '' , loading:false});
 
     };
 
@@ -49,7 +55,7 @@ class Contribute extends Component
 
         return (
 
-            <Form onSubmit = {this.onSubmit} >
+            <Form onSubmit = {this.onSubmit} error = {!!this.state.errorMessage}>
 
                 <FormField>
 
@@ -65,7 +71,8 @@ class Contribute extends Component
 
                 </FormField>
 
-                 <Button primary>
+                <Message error header ="Oops!!" content= {this.state.errorMessage} ></Message>
+                 <Button primary loading={this.state.loading}>
                         Contribute!
                     </Button>
 

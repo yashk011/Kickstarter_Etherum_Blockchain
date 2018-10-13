@@ -14,7 +14,7 @@ if(typeof window !== "undefined")
 else
 {
     const provider = new Web3.providers.HttpProvider(
-    'https://rinkeby.infura.io/v3/fcd6f7b51bd044adb25417faf10dd526'); 
+    'https://rinkeby.infura.io/v3/a40f08383f2044ecaf25ac5bf9a6b773'); 
 
     web3 = new Web3(provider);
 
@@ -22,4 +22,4 @@ else
 
 export default web3;
 
-
+//https://rinkeby.infura.io/v3/fcd6f7b51bd044adb25417faf10dd526

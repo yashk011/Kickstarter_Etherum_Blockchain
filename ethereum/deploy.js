@@ -3,8 +3,8 @@ const Web3 = require('web3');
 const compiledFactory = require('./build/CampaignFactory.json');
 const provider = new HDWalletProvider(
 
-  'child master thunder comfort sand wise frame maple tower physical man whip',
-  'https://rinkeby.infura.io/v3/fcd6f7b51bd044adb25417faf10dd526'
+  'coral stamp practice wrist salad crisp skate shaft until involve pistol vote',
+  'https://rinkeby.infura.io/v3/a40f08383f2044ecaf25ac5bf9a6b773'
 
 );
 
@@ -17,20 +17,13 @@ const deploy  = async () => {
 
   const result = await new web3.eth.Contract(JSON.parse(compiledFactory.interface)) // create a new module of eth in web3 && create an instance of Contract and iniarlize with a
   .deploy({data : '0x' + compiledFactory.bytecode }) 
-  .send({ from: accounts[0] , gas: '200000' }); // no neeedt to specify the gas 
+  .send({ from: accounts[0] , gas: '1000000' }); // no neeedt to specify the gas 
 
   console.log('Contract deployed to ' , result.options.address);
 
 };
 
 deploy();
-
-
-// IMPORTANT FOR DEPLOYING  //
-//_________________________ //
-
-
-// 0xb502c7996437a57919E4CC45CA9f1b5Ece2539d6 deployed address....git remote add origin https://github.com/yashk011/Kickstarter_usingEtheruem_Blockchain.git
 
 
 

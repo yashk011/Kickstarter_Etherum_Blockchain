@@ -35,10 +35,10 @@ contract Campaign {
     }
     
     address public manager;
-    uint minimumContribution;
+    uint public minimumContribution;
     mapping(address => bool) public approvers;
     Request[] public requests;
-    uint approversCount;
+    uint public approversCount;
     
     // Modifier to restrict the function call to specific manager !!!
 
